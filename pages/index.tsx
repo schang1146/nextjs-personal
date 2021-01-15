@@ -4,6 +4,7 @@ import Date from "../components/date";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
+import { getProjectsData } from "../lib/projects";
 import { GetStaticProps } from "next";
 
 interface AllPostsData {
@@ -12,22 +13,55 @@ interface AllPostsData {
   readonly id: string;
 }
 
+interface AllProjectsData {
+  readonly id: number;
+  readonly name: string;
+  readonly url: string;
+  readonly github: { fe: string; be: string };
+  readonly tech: string[];
+}
+
 export default function Home({
   allPostsData,
+  allProjectsData,
 }: {
   allPostsData: AllPostsData[];
+  allProjectsData: AllProjectsData[];
 }) {
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you'll be building a site like this on{" "}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Projects</h2>
+        <ul className={utilStyles.list}>
+          {allProjectsData ? (
+            allProjectsData.map(({ id, name, url, github, tech }) => (
+              <li className={utilStyles.listItem} key={id}>
+                <a href={url}>{name}</a>
+                {github.fe !== "" && (
+                  <>
+                    <br />
+                    <small>
+                      <a href={github.fe}>Frontend GitHub</a>
+                    </small>
+                  </>
+                )}
+                {github.be !== "" && (
+                  <>
+                    <br />
+                    <small>
+                      <a href={github.be}>Backend GitHub</a>
+                    </small>
+                  </>
+                )}
+              </li>
+            ))
+          ) : (
+            <div>Loading...</div>
+          )}
+        </ul>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
@@ -52,12 +86,14 @@ export default function Home({
 export const getStaticProps: GetStaticProps = async () => {
   // Get external data from the file system, API, DB, etc.
   const allPostsData = getSortedPostsData();
+  const allProjectsData = getProjectsData();
 
   // The value of the `props` key will be
   // passed to the `Home` component
   return {
     props: {
       allPostsData,
+      allProjectsData,
     },
   };
 };
