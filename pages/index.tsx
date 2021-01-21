@@ -36,9 +36,25 @@ export default function Home({
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div>
-            <a href="https://github.com/schang1146/">GitHub</a>
+            <a href="https://github.com/schang1146/" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
             {` | `}
-            <a href="https://www.linkedin.com/in/sammy-chang/">LinkedIn</a>
+            <a
+              href="https://www.linkedin.com/in/sammy-chang/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+            {` | `}
+            <a
+              href="https://drive.google.com/file/d/1sPfag2JazO09VjYxgy3l_tRw0UQ4DqJK/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Resume
+            </a>
           </div>
         </div>
         <h2 className={utilStyles.headingLg}>Projects</h2>
@@ -46,12 +62,16 @@ export default function Home({
           {allProjectsData ? (
             allProjectsData.map(({ id, name, url, github, tech }) => (
               <li className={utilStyles.listItem} key={id}>
-                <a href={url}>{name}</a>
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  {name}
+                </a>
                 {github.fe !== "" && (
                   <>
                     <br />
                     <small>
-                      <a href={github.fe}>Frontend GitHub</a>
+                      <a href={github.fe} target="_blank" rel="noopener noreferrer">
+                        Frontend GitHub
+                      </a>
                     </small>
                   </>
                 )}
@@ -59,7 +79,9 @@ export default function Home({
                   <>
                     <br />
                     <small>
-                      <a href={github.be}>Backend GitHub</a>
+                      <a href={github.be} target="_blank" rel="noopener noreferrer">
+                        Backend GitHub
+                      </a>
                     </small>
                   </>
                 )}
