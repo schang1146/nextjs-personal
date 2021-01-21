@@ -6,35 +6,32 @@ import utilStyles from "../styles/utils.module.css";
 const name: string = "Sammy Chang";
 export const siteTitle: string = "Sammy Chang";
 
-export default function Layout({
-  children,
-  home,
-}: {
-  children: React.ReactNode;
-  home?: boolean;
-}) {
+export default function Layout({ children, home }: { children: React.ReactNode; home?: boolean }) {
   return (
     <div className={styles.container}>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Learn how to build a personal website using Next.js"
-        ></meta>
+        <link rel="icon" href="favicon_io/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png" />
+        <link rel="manifest" href="favicon_io/site.webmanifest" />
+        <meta name="description" content="Learn how to build a personal website using Next.js" />
+        {/* Open Graph Meta Tags */}
         <meta
           property="og:image"
           content={`https://og-image.now.sh/${encodeURI(
             siteTitle
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
-        <meta name="og:title" content={siteTitle} />
+        <meta property="og:locale" content="en_US" />
+        {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>
         {home ? (
           <>
             <img
-              src="/images/profile.jpg"
+              src="/images/profile.png"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
             />
@@ -45,7 +42,7 @@ export default function Layout({
             <Link href="/">
               <a>
                 <img
-                  src="/images/profile.jpg"
+                  src="/images/profile.png"
                   className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                   alt={name}
                 />

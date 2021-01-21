@@ -34,6 +34,13 @@ export default function Home({
         <title>{siteTitle}</title>
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div>
+            <a href="https://github.com/schang1146/">GitHub</a>
+            {` | `}
+            <a href="https://www.linkedin.com/in/sammy-chang/">LinkedIn</a>
+          </div>
+        </div>
         <h2 className={utilStyles.headingLg}>Projects</h2>
         <ul className={utilStyles.list}>
           {allProjectsData ? (
